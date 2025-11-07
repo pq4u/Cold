@@ -6,4 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\Cold.Shared\Cold.Shared.csproj" />
+    </ItemGroup>
+
 </Project>
