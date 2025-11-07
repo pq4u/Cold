@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrapper", "Bootstrapper", "{51344555-2E68-4920-9E11-5D5D4B329327}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{E7CEE90E-F428-44CF-B67F-54C6400D992A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{D20ED5AA-93B8-44E6-BEC1-732D63C0912B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cold.Bootstrapper", "Bootstrapper\Cold.Bootstrapper\Cold.Bootstrapper.csproj", "{98C2F8D0-B23C-443A-957B-B83562C7EEB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cold.Shared", "Shared\Cold.Shared\Cold.Shared.csproj", "{85BCC4AD-E71E-4B09-965A-8A8E3A7099C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98C2F8D0-B23C-443A-957B-B83562C7EEB5} = {51344555-2E68-4920-9E11-5D5D4B329327}
+		{85BCC4AD-E71E-4B09-965A-8A8E3A7099C4} = {D20ED5AA-93B8-44E6-BEC1-732D63C0912B}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98C2F8D0-B23C-443A-957B-B83562C7EEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C2F8D0-B23C-443A-957B-B83562C7EEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C2F8D0-B23C-443A-957B-B83562C7EEB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C2F8D0-B23C-443A-957B-B83562C7EEB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85BCC4AD-E71E-4B09-965A-8A8E3A7099C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85BCC4AD-E71E-4B09-965A-8A8E3A7099C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85BCC4AD-E71E-4B09-965A-8A8E3A7099C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85BCC4AD-E71E-4B09-965A-8A8E3A7099C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
