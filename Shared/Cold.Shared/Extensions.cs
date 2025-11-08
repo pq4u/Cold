@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Cold.Shared.Database;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
@@ -11,6 +12,7 @@ public static class Extensions
     
     public static IServiceCollection AddSharedFramework(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddPostgres(configuration);
         services.AddControllers();
         services.AddSwaggerGen(s =>
         {
