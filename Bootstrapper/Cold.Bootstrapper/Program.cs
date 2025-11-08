@@ -1,11 +1,15 @@
+using Cold.Catalog.Api;
 using Cold.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSharedFramework(builder.Configuration);
+builder.Services
+    .AddCatalogModule()
+    .AddSharedFramework(builder.Configuration);
 
 var app = builder.Build();
 
+app.UseCatalogModule();
 app.UseSharedFramework();
 
 app.MapControllers();

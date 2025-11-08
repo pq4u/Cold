@@ -1,0 +1,33 @@
+@url = http://localhost:5136
+@categoryId = 019a60f6-7c19-73eb-9533-c5bd3e04aa42
+
+###
+GET {{url}}/ping
+
+###
+GET {{url}}/categories/get?id={{categoryId}}
+
+###
+GET {{url}}/categories/get-all
+
+###
+POST {{url}}/categories/add
+Content-Type: application/json
+
+{
+    "name": "Fruits",
+    "image": "img1=="
+}
+
+###
+PUT {{url}}/categories/update
+Content-Type: application/json
+
+{
+  "id": "{{categoryId}}",
+  "name": "Fruits updated",
+  "image": "img2=="
+}
+
+###
+DELETE {{url}}/categories/remove?id={{categoryId}}
