@@ -15,8 +15,8 @@ internal class ProductPriceRepository : IProductPriceRepository
         _productPrices = _dbContext.ProductPrices;
     }
 
-    public async Task<ProductPrice> GetAsync(Guid productId)
-        => await _productPrices.SingleOrDefaultAsync(x => x.ProductId == productId);
+    public async Task<IEnumerable<ProductPrice>> GetByProductIdAsync(Guid productId)
+        => await _productPrices.Where(x => x.ProductId == productId).ToListAsync();
     
     public async Task<IEnumerable<ProductPrice>> GetAllAsync()
         => await _productPrices.ToListAsync();

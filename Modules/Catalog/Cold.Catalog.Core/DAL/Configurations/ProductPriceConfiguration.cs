@@ -12,7 +12,7 @@ internal class ProductPriceConfiguration : IEntityTypeConfiguration<ProductPrice
 
         builder.HasKey(x => new 
         {
-            x.ProductId, x.Date
+            x.ProductId, Date = x.DateFrom
         });
         
         builder.HasOne(pp => pp.Product)
@@ -23,10 +23,13 @@ internal class ProductPriceConfiguration : IEntityTypeConfiguration<ProductPrice
         builder.Property(x => x.Price)
             .IsRequired();
         
-        builder.Property(x => x.Class);
+        builder.Property(x => x.ClassType);
         
-        builder.Property(x => x.Date)
+        builder.Property(x => x.DateFrom)
             .IsRequired()
             .HasDefaultValueSql("NOW()");
+        
+        builder.Property(x => x.DateTo)
+            .IsRequired(false);
     }
 }
