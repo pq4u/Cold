@@ -1,0 +1,36 @@
+@url = http://localhost:5136
+@productId = 019a6a8f-3755-71e0-8686-08a671cc4425
+@categoryId = 019a60f6-7c19-73eb-9533-c5bd3e04aa42
+
+###
+GET {{url}}/ping
+
+###
+GET {{url}}/products/get?id={{productId}}
+
+###
+GET {{url}}/products/get-all
+
+###
+POST {{url}}/products/add
+Content-Type: application/json
+
+{
+    "name": "Product",
+    "image": "img1==",
+    "categoryId": "{{categoryId}}"
+}
+
+###
+PUT {{url}}/products/update
+Content-Type: application/json
+
+{
+  "id": "{{productId}}",
+  "name": "Product updated",
+  "image": "img2==",
+  "categoryId": "{{categoryId}}"
+}
+
+###
+DELETE {{url}}/products/remove?id={{productId}}

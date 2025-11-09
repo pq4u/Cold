@@ -1,6 +1,6 @@
 ﻿using Cold.Catalog.Core.Categories.Repositories;
 using Cold.Catalog.Core.Entities;
-using Cold.Catalog.Shared.Dto;
+using Cold.Catalog.Shared.Dtos;
 
 namespace Cold.Catalog.Core.Services;
 

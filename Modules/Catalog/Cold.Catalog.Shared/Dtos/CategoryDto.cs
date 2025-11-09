@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Cold.Catalog.Shared.Dto;
+namespace Cold.Catalog.Shared.Dtos;
 
 public class CategoryDto
 {

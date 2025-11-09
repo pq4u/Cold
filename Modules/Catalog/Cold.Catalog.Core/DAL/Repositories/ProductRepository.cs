@@ -15,9 +15,12 @@ internal class ProductRepository : IProductRepository
         _products = _dbContext.Products;
     }
 
-    public async Task<Product> GetAsync(Guid productId)
-        => await _products.SingleOrDefaultAsync(x => x.Id == productId);
-    
+    public async Task<Product> GetByIdAsync(Guid id)
+        => await _products.SingleOrDefaultAsync(x => x.Id == id);
+
+    public async Task<Product> GetByNameAsync(string name)
+        => await _products.SingleOrDefaultAsync(x => x.Name == name);
+
     public async Task<IEnumerable<Product>> GetAllAsync()
         => await _products.ToListAsync();
     
@@ -30,6 +33,12 @@ internal class ProductRepository : IProductRepository
     public async Task UpdateAsync(Product product)
     {
         _products.Update(product);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Product product)
+    {
+        _products.Remove(product);
         await _dbContext.SaveChangesAsync();
     }
 }

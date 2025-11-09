@@ -9,4 +9,12 @@ internal sealed class Product
     public Guid CategoryId { get; private set; }
     
     public ICollection<ProductPrice> Prices { get; private set; }
+    
+    public Product(Guid id, string name, string image, Guid categoryId)
+    {
+        Id = id;
+        Name = name;
+        Image = image;
+        CategoryId = categoryId;
+    }
 }

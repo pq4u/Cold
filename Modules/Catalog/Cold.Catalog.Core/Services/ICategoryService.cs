@@ -1,4 +1,4 @@
-﻿using Cold.Catalog.Shared.Dto;
+﻿using Cold.Catalog.Shared.Dtos;
 
 namespace Cold.Catalog.Core.Services;
 

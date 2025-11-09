@@ -16,5 +16,6 @@ public static class Extensions
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
         services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IProductService, ProductService>();
     }
 }

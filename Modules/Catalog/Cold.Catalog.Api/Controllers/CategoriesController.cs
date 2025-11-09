@@ -1,5 +1,5 @@
 ﻿using Cold.Catalog.Core.Services;
-using Cold.Catalog.Shared.Dto;
+using Cold.Catalog.Shared.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;

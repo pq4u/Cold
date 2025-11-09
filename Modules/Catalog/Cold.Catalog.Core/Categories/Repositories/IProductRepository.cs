@@ -4,8 +4,10 @@ namespace Cold.Catalog.Core.Categories.Repositories;
 
 internal interface IProductRepository
 {
-    Task<Product> GetAsync(Guid productId);
+    Task<Product> GetByIdAsync(Guid id);
+    Task<Product> GetByNameAsync(string name);
     Task<IEnumerable<Product>> GetAllAsync();
     Task AddAsync(Product product);
     Task UpdateAsync(Product product);
+    Task DeleteAsync(Product product);
 }
