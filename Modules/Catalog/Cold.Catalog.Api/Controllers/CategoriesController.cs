@@ -35,19 +35,19 @@ public class CategoriesController : ControllerBase
 
     [HttpPost("add")]
     [SwaggerOperation("Add new category")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<CategoryDto>>> AddAsync(CategoryDto category)
+    public async Task<ActionResult> AddAsync(CategoryDto category)
     {
         await _categoryService.AddAsync(category);
-        return CreatedAtAction(nameof(GetAsync), new { categoryId = category.Id }, null);
+        return CreatedAtAction(nameof(GetAsync), new { categoryId = category.Id });
     }
     
     [HttpPut("update")]
     [SwaggerOperation("Update existing category")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<CategoryDto>>> UpdateAsync(CategoryDto category)
+    public async Task<ActionResult> UpdateAsync(CategoryDto category)
     {
         await _categoryService.UpdateAsync(category);
         return Ok();
@@ -57,7 +57,7 @@ public class CategoriesController : ControllerBase
     [SwaggerOperation("Remove category")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<CategoryDto>>> AddAsync([FromQuery] Guid id)
+    public async Task<ActionResult> AddAsync([FromQuery] Guid id)
     {
         await _categoryService.RemoveAsync(id);
         return Ok();

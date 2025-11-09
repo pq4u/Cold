@@ -12,6 +12,7 @@ public static class Extensions
     {
         services.Configure<PostgresOptions>(configuration.GetSection(SectionName));
         services.AddHostedService<DbContextAppInitializer>();
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         
         return services;
     }

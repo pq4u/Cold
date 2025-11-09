@@ -34,19 +34,19 @@ public class ProductsController : ControllerBase
 
     [HttpPost("add")]
     [SwaggerOperation("Add new product")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<ProductDto>>> AddAsync(ProductDto product)
+    public async Task<ActionResult> AddAsync(ProductDto product)
     {
         await _productService.AddAsync(product);
-        return CreatedAtAction(nameof(GetAsync), new { productId = product.Id }, null);
+        return CreatedAtAction(nameof(GetAsync), new { productId = product.Id });
     }
     
     [HttpPut("update")]
     [SwaggerOperation("Update existing product")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<ProductDto>>> UpdateAsync(ProductDto product)
+    public async Task<ActionResult> UpdateAsync(ProductDto product)
     {
         await _productService.UpdateAsync(product);
         return Ok();
@@ -56,7 +56,7 @@ public class ProductsController : ControllerBase
     [SwaggerOperation("Remove product")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<ProductDto>>> AddAsync([FromQuery] Guid id)
+    public async Task<ActionResult> AddAsync([FromQuery] Guid id)
     {
         await _productService.RemoveAsync(id);
         return Ok();
