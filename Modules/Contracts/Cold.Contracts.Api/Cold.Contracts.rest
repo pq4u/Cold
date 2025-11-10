@@ -1,0 +1,97 @@
+@url = http://localhost:5136
+@contractId = 019a6a8f-3755-71e0-8686-08a671cc4426
+@amendmentId = 019a6a8f-3755-71e0-8686-08a671cc4429
+@productId1 = 019a6a8f-3755-71e0-8686-08a671cc4425
+@productId2 = 019a6ad2-1779-7ad9-b238-b43c01d5cf03
+
+###
+GET {{url}}/ping
+
+###
+GET {{url}}/contracts/get?id={{contractId}}
+
+###
+GET {{url}}/contracts/get-all
+
+###
+POST {{url}}/contracts/add
+Content-Type: application/json
+
+{
+    "id": "{{contractId}}",
+    "contractNumber": "C-001",
+    "title": "Contract title 1",
+    "content": "Content 1",
+    "contractStatusId": 1,
+    "isAccepted": false,
+    "startDate": "2025-01-01T00:00:00Z",
+    "endDate": "2025-12-31T23:59:59Z",
+    "signedDate": null,
+    "productIds": [
+        "{{productId1}}",
+        "{{productId2}}"
+    ]
+}
+
+###
+POST {{url}}/contracts/add
+Content-Type: application/json
+
+{
+    "id": "019a6a8f-3755-71e0-8686-08a671cc4428",
+    "contractNumber": "C-002",
+    "title": "Contract title 2",
+    "content": "Content 2",
+    "contractStatusId": 2,
+    "isAccepted": false,
+    "startDate": "2025-06-01T00:00:00Z",
+    "endDate": "2025-09-30T23:59:59Z",
+    "signedDate": null,
+    "productIds": []
+}
+
+###
+PUT {{url}}/contracts/update
+Content-Type: application/json
+
+{
+    "id": "{{contractId}}",
+    "contractStatusId": 3,
+    "isAccepted": true,
+    "signedDate": "2024-11-10T14:30:00Z"
+}
+
+###
+GET {{url}}/contractAmendments/get?id={{amendmentId}}
+
+###
+GET {{url}}/contractAmendments/get-by-contract?contractId={{contractId}}
+
+###
+GET {{url}}/contractAmendments/get-all
+
+###
+POST {{url}}/contractAmendments/add
+Content-Type: application/json
+
+{
+    "id": "{{amendmentId}}",
+    "contractId": "{{contractId}}",
+    "amendmentNumber": "AMD-001",
+    "title": "Amendment Title 1",
+    "content": "Amendment content 1",
+    "reason": "Reason content 1"
+}
+
+###
+POST {{url}}/contractAmendments/add
+Content-Type: application/json
+
+{
+    "id": "019a6a8f-3755-71e0-8686-08a671cc4430",
+    "contractId": "{{contractId}}",
+    "amendmentNumber": "AMD-002",
+    "title": "Amendment Title 2",
+    "content": "Amendment content 2",
+    "reason": "Reason content 2"
+}
