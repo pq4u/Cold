@@ -1,0 +1,95 @@
+@url = http://localhost:5136
+@transportRequestId = adf64558-2bd0-45ec-9cfc-e68c79e255de
+@deliveryId = 00000000-0000-0000-0000-000000000001
+@supplierId = 00000000-0000-0000-0000-000000000000
+
+###
+GET {{url}}/ping
+
+###
+GET {{url}}/transportrequests/{{transportRequestId}}
+
+###
+GET {{url}}/transportrequests
+
+###
+GET {{url}}/transportrequests/by-supplier/{{supplierId}}
+
+### 1=ToRealize, 2=OnWayToSupplier, 3=AtSupplier, 4=OnWayToColdStorage, 5=InColdStorage, 6=Cancelled
+GET {{url}}/transportrequests/by-status/1
+
+###
+GET {{url}}/transportrequests/statuses
+
+###
+POST {{url}}/transportrequests
+Content-Type: application/json
+
+{
+    "deliveryId": null,
+    "supplierId": "{{supplierId}}",
+    "requestDate": "2025-11-13T09:00:00Z",
+    "scheduledPickupDate": "2025-11-14T08:00:00Z",
+    "notes": "Pick up request"
+}
+
+###
+PATCH {{url}}/transportrequests/{{transportRequestId}}/status
+Content-Type: application/json
+
+{
+    "transportStatusId": 2,
+    "actualPickupDate": null,
+    "actualDeliveryDate": null
+}
+
+###
+PATCH {{url}}/transportrequests/{{transportRequestId}}/status
+Content-Type: application/json
+
+{
+    "transportStatusId": 3,
+    "actualPickupDate": "2025-11-12T08:30:00Z",
+    "actualDeliveryDate": null
+}
+
+###
+PATCH {{url}}/transportrequests/{{transportRequestId}}/status
+Content-Type: application/json
+
+{
+    "transportStatusId": 4,
+    "actualPickupDate": "2025-11-12T08:30:00Z",
+    "actualDeliveryDate": null
+}
+
+###
+PATCH {{url}}/transportrequests/{{transportRequestId}}/status
+Content-Type: application/json
+
+{
+    "transportStatusId": 5,
+    "actualPickupDate": "2025-11-12T08:30:00Z",
+    "actualDeliveryDate": "2025-11-12T14:00:00Z"
+}
+
+###
+PATCH {{url}}/transportrequests/{{transportRequestId}}/status
+Content-Type: application/json
+
+{
+    "transportStatusId": 6,
+    "actualPickupDate": null,
+    "actualDeliveryDate": null
+}
+
+###
+PATCH {{url}}/transportrequests/{{transportRequestId}}?scheduledPickupDate=2025-11-13T09:00:00Z&notes=Updated pickup time
+
+###
+PATCH {{url}}/transportrequests/{{transportRequestId}}/link-delivery
+Content-Type: application/json
+
+{
+    "deliveryId": "{{deliveryId}}"
+}
