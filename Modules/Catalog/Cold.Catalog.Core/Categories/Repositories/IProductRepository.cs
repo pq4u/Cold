@@ -6,6 +6,7 @@ internal interface IProductRepository
 {
     Task<Product> GetByIdAsync(Guid id);
     Task<Product> GetByNameAsync(string name);
+    Task<IEnumerable<string>> GetByIdsAsync(List<Guid> id);
     Task<IEnumerable<Product>> GetAllAsync();
     Task AddAsync(Product product);
     Task UpdateAsync(Product product);

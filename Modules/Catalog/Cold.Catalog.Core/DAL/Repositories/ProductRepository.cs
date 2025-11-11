@@ -21,6 +21,9 @@ internal class ProductRepository : IProductRepository
     public async Task<Product> GetByNameAsync(string name)
         => await _products.SingleOrDefaultAsync(x => x.Name == name);
 
+    public async Task<IEnumerable<string>> GetByIdsAsync(List<Guid> ids)
+        => await _products.Where(x => ids.Contains(x.Id)).Select(x => x.Name).ToListAsync();
+
     public async Task<IEnumerable<Product>> GetAllAsync()
         => await _products.ToListAsync();
     

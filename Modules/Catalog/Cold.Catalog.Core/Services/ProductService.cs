@@ -19,13 +19,15 @@ internal class ProductService : IProductService
         
         return product is null ? null : MapToDto(product);
     }
-
     public async Task<IReadOnlyList<ProductDto>> GetAllAsync()
     {
         var products = await _productRepository.GetAllAsync();
         
         return products.Select(MapToDto).ToList();
     }
+
+    public async Task<IReadOnlyList<string>> GetNamesAsync(List<Guid> productIds)
+        => (await _productRepository.GetByIdsAsync(productIds)).ToList();
 
     public async Task AddAsync(ProductDto dto)
     {

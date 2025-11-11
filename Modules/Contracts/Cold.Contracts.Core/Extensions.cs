@@ -1,6 +1,7 @@
 using Cold.Contracts.Core.Contracts.Repositories;
 using Cold.Contracts.Core.DAL;
 using Cold.Contracts.Core.DAL.Repositories;
+using Cold.Contracts.Core.Generator;
 using Cold.Contracts.Core.Services;
 using Cold.Shared.Database;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,5 +18,6 @@ public static class Extensions
         services.AddScoped<IContractAmendmentRepository, ContractAmendmentRepository>();
         services.AddScoped<IContractService, ContractService>();
         services.AddScoped<IContractAmendmentService, ContractAmendmentService>();
+        services.AddScoped<IContractPdfGenerator, ContractPdfGenerator>();
     }
 }
