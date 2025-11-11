@@ -2,6 +2,7 @@
 using Cold.Catalog.Core.DAL;
 using Cold.Catalog.Core.DAL.Repositories;
 using Cold.Catalog.Core.Services;
+using Cold.Catalog.Shared;
 using Cold.Shared.Database;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,5 +19,6 @@ public static class Extensions
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IProductPriceService, ProductPriceService>();
+        services.AddScoped<ICatalogModuleApi, CatalogModuleApi>();
     }
 }
