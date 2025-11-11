@@ -23,8 +23,20 @@ internal class ProductPriceService : IProductPriceService
     public async Task<IReadOnlyList<ProductPriceDto>> GetAllAsync()
     {
         var products = await _productPriceRepository.GetAllAsync();
-        
+
         return products.Select(MapToDto).ToList();
+    }
+
+    public async Task<decimal?> GetPriceAsync(Guid productId, string classType, DateTimeOffset date)
+    {
+        var productPrices = await _productPriceRepository.GetByProductIdAsync(productId);
+
+        var price = productPrices.FirstOrDefault(p =>
+            p.ClassType == classType &&
+            p.DateFrom <= date &&
+            (p.DateTo == null || p.DateTo >= date));
+
+        return price?.Price;
     }
 
     public async Task AddAsync(ProductPriceDto dto)
