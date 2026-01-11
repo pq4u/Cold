@@ -1,0 +1,70 @@
+@url = http://localhost:5136
+@packageId = ebc76616-96f4-4c9f-809c-7d726f31086f
+@requestPackageRentalId = d32c8580-3e93-406d-a7d2-47249678856f
+
+###
+POST {{url}}/api/packages
+Content-Type: application/json
+
+{
+  "name": "Pallet EURO",
+  "description": "Standard European pallet",
+  "quantity": 100
+}
+
+###
+GET {{url}}/api/packages
+Accept: application/json
+
+###
+GET {{url}}/api/packages/{{packageId}}
+Accept: application/json
+
+###
+PUT {{url}}/api/packages/{{packageId}}
+Content-Type: application/json
+
+{
+  "id": "{{packageId}}",
+  "name": "Pallet EURO Modified",
+  "description": "Modified Standard European pallet",
+  "quantity": 150
+}
+
+###
+DELETE {{url}}/api/packages/{{packageId}}
+
+###
+POST {{url}}/api/package-rentals/request
+Content-Type: application/json
+
+{
+  "supplierId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "items": [
+    {
+      "packageId": "{{packageId}}",
+      "quantity": 10
+    }
+  ]
+}
+
+###
+GET {{url}}/api/package-rentals/requested
+Accept: application/json
+
+###
+GET {{url}}/api/package-rentals/{{requestPackageRentalId}}
+Accept: application/json
+
+###
+POST {{url}}/api/package-rentals/{{requestPackageRentalId}}/approve
+
+###
+GET {{url}}/api/package-rentals/active
+Accept: application/json
+
+###
+POST {{url}}/api/package-rentals/{{requestPackageRentalId}}/return
+
+###
+POST {{url}}/api/package-rentals/{{requestPackageRentalId}}/reject
