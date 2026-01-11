@@ -1,6 +1,7 @@
 using Cold.Catalog.Api;
 using Cold.Contracts.Api;
 using Cold.Deliveries.Api;
+using Cold.Packages.Api;
 using Cold.Shared;
 using QuestPDF.Infrastructure;
 
@@ -12,6 +13,7 @@ builder.Services
     .AddCatalogModule()
     .AddContractsModule()
     .AddDeliveriesModule()
+    .AddPackagesModule()
     .AddSharedFramework(builder.Configuration);
 
 var app = builder.Build();
@@ -19,6 +21,7 @@ var app = builder.Build();
 app.UseCatalogModule();
 app.UseContractsModule();
 app.UseDeliveriesModule();
+app.UsePackagesModule();
 app.UseSharedFramework();
 
 app.MapControllers();
