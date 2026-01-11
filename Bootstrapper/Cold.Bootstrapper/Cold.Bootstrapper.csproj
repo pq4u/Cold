@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Modules\Auth\Cold.Auth.Api\Cold.Auth.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Catalog\Cold.Catalog.Api\Cold.Catalog.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Contracts\Cold.Contracts.Api\Cold.Contracts.Api.csproj" />
       <ProjectReference Include="..\..\Modules\Deliveries\Cold.Deliveries.Api\Cold.Deliveries.Api.csproj" />

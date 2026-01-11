@@ -1,0 +1,74 @@
+@url = http://localhost:5136
+@adminToken = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIwMTliYWU3Ni00Njc2LTdiZjctYTI5Ni0yZWE1YTRjYmU1ZDAiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzY4MTU4NTg1LCJleHAiOjE3Njg3NjMzODUsImlhdCI6MTc2ODE1ODU4NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjUwMDEifQ.ccKUXAON5-LxMZ9YbraJ1yqzaCBEwiLw_IQKifxDnGyuzz3RoBaSCq1bffAmpgmUCTSS2nHeY9GUfd4UMxM_oQ
+
+###
+POST {{url}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Password123!",
+  "role": "Admin"
+}
+
+###
+POST {{url}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "employee@example.com",
+  "password": "Password123!",
+  "role": "Employee"
+}
+
+###
+POST {{url}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "supplier@example.com",
+  "password": "Password123!",
+  "role": "Supplier"
+}
+
+###
+POST {{url}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Password123!"
+}
+
+###
+POST {{url}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "employee@example.com",
+  "password": "Password123!"
+}
+
+###
+POST {{url}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "supplier@example.com",
+  "password": "Password123!"
+}
+
+###
+GET {{url}}/api/packages
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET {{url}}/api/packages
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET {{url}}/api/packages
+Authorization: Bearer {{token}}
+Accept: application/json
