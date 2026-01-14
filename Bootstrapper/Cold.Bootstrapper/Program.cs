@@ -19,6 +19,9 @@ builder.Services
     .AddPackagesModule()
     .AddSharedFramework(builder.Configuration);
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -34,6 +37,8 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseSharedFramework();
 
 app.UseAuthentication();
