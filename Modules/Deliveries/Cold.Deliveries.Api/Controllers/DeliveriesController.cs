@@ -70,6 +70,7 @@ public class DeliveriesController : ControllerBase
         try
         {
             var deliveryId = await _deliveryService.AddAsync(dto);
+            return Ok();
             return CreatedAtAction(nameof(GetAsync), new { id = deliveryId }, null);
         }
         catch (ArgumentException ex)

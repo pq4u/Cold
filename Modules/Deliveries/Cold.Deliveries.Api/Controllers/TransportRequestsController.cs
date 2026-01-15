@@ -58,6 +58,7 @@ public class TransportRequestsController : ControllerBase
     public async Task<ActionResult> CreateAsync([FromBody] CreateTransportRequestDto dto)
     {
         var requestId = await _transportRequestService.CreateAsync(dto);
+        return Ok();
         return CreatedAtAction(nameof(GetAsync), new { id = requestId }, null);
     }
 

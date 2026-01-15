@@ -38,6 +38,7 @@ public class PackageRentalsController : ControllerBase
     public async Task<ActionResult> RequestRental(CreatePackageRentalRequestDto dto)
     {
         var id = await _rentalService.RequestRentalAsync(dto);
+        return Ok();
         return CreatedAtAction(nameof(Get), new { id }, null);
     }
     

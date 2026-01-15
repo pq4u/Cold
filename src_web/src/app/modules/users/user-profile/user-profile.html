@@ -1,0 +1,43 @@
+<div class="container mx-auto">
+  <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="bg-indigo-600 px-6 py-4">
+      <h2 class="text-2xl font-bold text-white">My Profile</h2>
+    </div>
+    
+    <div class="p-6">
+      <div *ngIf="user; else loading">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-500">User ID</label>
+            <p class="mt-1 text-lg text-gray-900">{{ user.id }}</p>
+          </div>
+          
+          <div>
+             <label class="block text-sm font-medium text-gray-500">Email</label>
+             <p class="mt-1 text-lg text-gray-900">{{ user.email }}</p>
+          </div>
+          
+          <div>
+             <label class="block text-sm font-medium text-gray-500">Role</label>
+             <p class="mt-1 text-lg text-gray-900">
+               <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
+                 {{ user.roles.join(', ') }}
+               </span>
+             </p>
+          </div>
+        </div>
+        
+        <div class="mt-8 border-t pt-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">Account Settings</h3>
+          <button class="text-indigo-600 hover:text-indigo-800 font-medium">Change Password</button>
+        </div>
+      </div>
+      
+      <ng-template #loading>
+        <div class="flex justify-center py-10">
+          <p class="text-gray-500">Loading profile...</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

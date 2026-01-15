@@ -39,6 +39,7 @@ public class ProductsController : ControllerBase
     public async Task<ActionResult> AddAsync(ProductDto product)
     {
         await _productService.AddAsync(product);
+        return Ok();
         return CreatedAtAction(nameof(GetAsync), new { productId = product.Id });
     }
     

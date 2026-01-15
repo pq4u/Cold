@@ -40,6 +40,7 @@ public class CategoriesController : ControllerBase
     public async Task<ActionResult> AddAsync(CategoryDto category)
     {
         await _categoryService.AddAsync(category);
+        return Ok();
         return CreatedAtAction(nameof(GetAsync), new { categoryId = category.Id });
     }
     

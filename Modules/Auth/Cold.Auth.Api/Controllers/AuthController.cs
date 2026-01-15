@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Cold.Auth.Api.Controllers;
 
 [ApiController]
-[Route("api/auth")]
+[Route("auth")]
 public class AuthController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
@@ -28,12 +28,12 @@ public class AuthController : ControllerBase
         var validRoles = new[] { "Supplier", "Employee", "Admin" };
         if (!validRoles.Contains(request.Role))
         {
-            return BadRequest($"Invalid role. Must be one of: {string.Join(", ", validRoles)}");
+            return BadRequest($"Invalid role, available roles: {string.Join(", ", validRoles)}");
         }
 
         if (!await _roleManager.RoleExistsAsync(request.Role))
         {
-            return BadRequest($"Role '{request.Role}' does not exist.");
+            return BadRequest($"Role {request.Role} does not exist.");
         }
         
         var user = new ApplicationUser { UserName = request.Email, Email = request.Email };

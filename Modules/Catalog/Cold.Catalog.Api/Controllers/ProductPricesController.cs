@@ -38,6 +38,7 @@ public class ProductPricesController : ControllerBase
     public async Task<ActionResult> AddAsync(ProductPriceDto productPrice)
     {
         await _productPriceService.AddAsync(productPrice);
+        return Ok();
         return CreatedAtAction(nameof(GetAsync), new { productId = productPrice.ProductId });
     }
 

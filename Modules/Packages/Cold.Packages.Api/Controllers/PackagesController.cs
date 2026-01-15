@@ -32,6 +32,7 @@ public class PackagesController : ControllerBase
     public async Task<ActionResult> Post(PackageDto dto)
     {
         var id = await _packageService.CreateAsync(dto);
+        return Ok();
         return CreatedAtAction(nameof(Get), new { id }, null);
     }
 
