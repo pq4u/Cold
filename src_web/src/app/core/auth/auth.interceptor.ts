@@ -7,7 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
   const authService = inject(AuthService);
   const token = authService.getToken();
 
-  if (token) {
+  if (token) { // dodac jwt do kazdeog requesta
     const cloned = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${token}`)
     });

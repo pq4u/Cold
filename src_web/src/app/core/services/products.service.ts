@@ -12,25 +12,26 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  get(id: string): Observable<ProductDto> {
+  get(id:string): Observable<ProductDto> {
     let params = new HttpParams().set('id', id);
-    return this.http.get<ProductDto>(`${this.apiUrl}/get`, { params });
+    return this.http.get<ProductDto>(`${this.apiUrl}/get`, {params });
   }
 
   getAll(): Observable<ProductDto[]> {
-    return this.http.get<ProductDto[]>(`${this.apiUrl}/get-all`);
+    return this.http.get<ProductDto[]>(`${this.apiUrl}/get-all`)
   }
 
   add(product: ProductDto): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/add`, product);
   }
 
-  update(product: ProductDto): Observable<void> {
+  update(product:ProductDto): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/update`, product);
   }
 
   remove(id: string): Observable<void> {
     let params = new HttpParams().set('id', id);
-    return this.http.delete<void>(`${this.apiUrl}/remove`, { params });
+
+    return this.http.delete<void>(`${this.apiUrl}/remove`, { params })
   }
 }

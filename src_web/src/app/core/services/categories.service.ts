@@ -7,6 +7,7 @@ import { CategoryDto, ProblemDetails } from '../models/api-models';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CategoriesService {
   private apiUrl = `${environment.apiUrl}/Categories`;
 

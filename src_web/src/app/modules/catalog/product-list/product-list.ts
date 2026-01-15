@@ -57,7 +57,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getCategoryName(id: string | undefined): string {
-    return this.categories.find(c => c.id === id)?.name || 'Unknown';
+    return this.categories.find(c => c.id === id)?.name || 'Nieznana';
   }
 
   onAddProduct(): void {
@@ -78,7 +78,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onDeleteProduct(id: string): void {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('Czy na pewno chcesz usunąć ten produkt?')) {
       this.productsService.remove(id).subscribe(() => this.loadData());
     }
   }

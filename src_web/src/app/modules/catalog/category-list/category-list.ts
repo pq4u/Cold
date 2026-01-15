@@ -55,7 +55,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   onDelete(id: string): void {
-    if (confirm('Are you sure you want to delete this category?')) {
+    if (confirm('Czy na pewno chcesz usunąć tą kategorie?')) {
       this.categoriesService.remove(id).subscribe(() => {
         this.loadCategories();
       });

@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DeliveriesService } from '../../../core/services/deliveries.service';
 import { DeliveryDto } from '../../../core/models/api-models';
 
+import { AuthService } from '../../../core/auth/auth.service';
+
 @Component({
   selector: 'app-delivery-list',
   standalone: true,
@@ -18,6 +20,7 @@ export class DeliveryListComponent implements OnInit {
   
   constructor(
     private deliveriesService: DeliveriesService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -35,15 +38,26 @@ export class DeliveryListComponent implements OnInit {
 
   loadDeliveries(): void {
     const status = this.filterForm.get('status')?.value;
-    if (status === 'uninvoiced') {
-      this.deliveriesService.getUninvoiced().subscribe(data => this.deliveries = data);
+    const isSupplier = this.authService.isSupplier();
+    const userId = this.authService.getUserId();
+
+    if (isSupplier && userId) {
+        if (status === 'uninvoiced') {
+            this.deliveriesService.getUninvoicedBySupplier(userId).subscribe(data => this.deliveries = data);
+        } else {
+            this.deliveriesService.getBySupplier(userId).subscribe(data => this.deliveries = data);
+        }
     } else {
-      this.deliveriesService.getAll().subscribe(data => this.deliveries = data);
+        if (status === 'uninvoiced') {
+            this.deliveriesService.getUninvoiced().subscribe(data => this.deliveries = data);
+        } else {
+            this.deliveriesService.getAll().subscribe(data => this.deliveries = data);
+        }
     }
   }
 
   markAsInvoiced(id: string): void {
-    if (confirm('Are you sure you want to mark this delivery as invoiced?')) {
+    if (confirm('Czy na pewno chcesz oznaczyć tę dostawę jako zafakturowaną?')) {
       this.deliveriesService.markInvoiced(id).subscribe(() => {
         this.loadDeliveries();
       });

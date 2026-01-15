@@ -52,7 +52,7 @@ export class PackageListComponent implements OnInit {
   }
 
   onDelete(id: string): void {
-    if (confirm('Are you sure you want to delete this package?')) {
+    if (confirm('Czy na pewno chcesz usunąć to opakowanie?')) {
       this.packagesService.delete(id).subscribe(() => this.loadPackages());
     }
   }

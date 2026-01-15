@@ -1,15 +1,15 @@
 <div class="container mx-auto">
   <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Deliveries</h2>
+    <h2 class="text-2xl font-bold text-gray-800">Dostawy</h2>
     <div class="flex items-center space-x-4">
       <form [formGroup]="filterForm">
         <select formControlName="status" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm shadow-sm">
-          <option value="all">All Deliveries</option>
-          <option value="uninvoiced">Uninvoiced</option>
+          <option value="all">Wszystkie dostawy</option>
+          <option value="uninvoiced">Niefakturowane</option>
         </select>
       </form>
       <a routerLink="/deliveries/create" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
-        New Delivery
+        Nowa dostawa
       </a>
     </div>
   </div>
@@ -18,12 +18,12 @@
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Number</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supplier</th>
-          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
-          <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Invoiced</th>
-          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Numer</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dostawca</th>
+          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Wartość</th>
+          <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Zafakturowano</th>
+          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Akcje</th>
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
@@ -42,12 +42,12 @@
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-center">
             <span [class]="delivery.isInvoiced ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800' : 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'">
-              {{ delivery.isInvoiced ? 'Yes' : 'No' }}
+              {{ delivery.isInvoiced ? 'Tak' : 'Nie' }}
             </span>
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-             <button *ngIf="!delivery.isInvoiced" (click)="markAsInvoiced(delivery.id!)" class="text-indigo-600 hover:text-indigo-900 mr-4">Mark Invoiced</button>
-             <a [routerLink]="['/deliveries', delivery.id]" class="text-gray-600 hover:text-gray-900">Details</a>
+             <button *ngIf="!delivery.isInvoiced" (click)="markAsInvoiced(delivery.id!)" class="text-indigo-600 hover:text-indigo-900 mr-4">Oznacz jako zafakturowane</button>
+             <a [routerLink]="['/deliveries', delivery.id]" class="text-gray-600 hover:text-gray-900">Szczegóły</a>
           </td>
         </tr>
       </tbody>

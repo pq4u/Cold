@@ -1,7 +1,7 @@
 <div class="container mx-auto max-w-4xl">
   <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Register New Delivery</h2>
-    <a routerLink="/deliveries" class="text-gray-600 hover:text-gray-900">Back to List</a>
+    <h2 class="text-2xl font-bold text-gray-800">Zarejestruj nową dostawę</h2>
+    <a routerLink="/deliveries" class="text-gray-600 hover:text-gray-900">Powrót do listy</a>
   </div>
 
   <div class="bg-white shadow-md rounded-lg p-6">
@@ -9,22 +9,22 @@
       <!-- Header Info -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Delivery Number</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Numer dostawy</label>
           <input type="text" formControlName="deliveryNumber" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Supplier</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Dostawca</label>
           <select formControlName="supplierId" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border">
-            <option value="" disabled>Select Supplier</option>
+            <option value="" disabled>Wybierz dostawcę</option>
             <option *ngFor="let s of suppliers" [value]="s.id">{{ s.email }}</option>
           </select>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Data</label>
           <input type="datetime-local" formControlName="deliveryDate" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Uwagi</label>
           <input type="text" formControlName="notes" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border">
         </div>
       </div>
@@ -32,36 +32,36 @@
       <!-- Products List -->
       <div class="mb-6">
         <div class="flex justify-between items-center mb-4">
-          <h3 class="text-lg font-medium text-gray-900">Products</h3>
+          <h3 class="text-lg font-medium text-gray-900">Produkty</h3>
           <button type="button" (click)="addProduct()" class="bg-green-600 text-white px-3 py-1 rounded-md text-sm hover:bg-green-700">
-            + Add Product
+            + Dodaj produkt
           </button>
         </div>
 
         <div formArrayName="products" class="space-y-4">
           <div *ngFor="let product of productForms.controls; let i=index" [formGroupName]="i" class="flex items-end gap-4 p-4 bg-gray-50 rounded-md">
              <div class="flex-1">
-               <label class="block text-xs font-medium text-gray-500 mb-1">Product</label>
+               <label class="block text-xs font-medium text-gray-500 mb-1">Produkt</label>
                <select formControlName="productId" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                 <option value="" disabled>Select Product</option>
+                 <option value="" disabled>Wybierz produkt</option>
                  <option *ngFor="let p of products" [value]="p.id">{{ p.name }}</option>
                </select>
              </div>
              <div class="w-64">
-               <label class="block text-xs font-medium text-gray-500 mb-1">Price / Class</label>
+               <label class="block text-xs font-medium text-gray-500 mb-1">Cena / Klasa</label>
                <select formControlName="classType" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                 <option value="" disabled>Select Price</option>
+                 <option value="" disabled>Wybierz cenę</option>
                  <option *ngFor="let p of getPricesForProduct(product.get('productId')?.value)" [value]="p.classType">
                    {{ p.classType }} - {{ p.price | number:'1.2-2' }}
                  </option>
                </select>
              </div>
              <div class="w-32">
-               <label class="block text-xs font-medium text-gray-500 mb-1">Quantity</label>
+               <label class="block text-xs font-medium text-gray-500 mb-1">Ilość</label>
                <input type="number" formControlName="quantity" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border">
              </div>
              <button type="button" (click)="removeProduct(i)" class="bg-red-100 text-red-600 p-2 rounded-md hover:bg-red-200">
-               <span class="sr-only">Remove</span>
+               <span class="sr-only">Usuń</span>
                &times;
              </button>
           </div>
@@ -70,7 +70,7 @@
 
       <div class="flex justify-end pt-5">
         <button type="submit" [disabled]="deliveryForm.invalid" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300">
-          Register Delivery
+          Zarejestruj dostawę
         </button>
       </div>
     </form>
