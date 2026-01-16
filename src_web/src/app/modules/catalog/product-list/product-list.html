@@ -10,7 +10,7 @@
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Obraz</th>
+          <!-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Obraz</th> -->
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nazwa</th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kategoria</th>
           <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Akcje</th>
@@ -18,9 +18,9 @@
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
         <tr *ngFor="let product of products">
-          <td class="px-6 py-4 whitespace-nowrap">
+          <!-- <td class="px-6 py-4 whitespace-nowrap">
             <img [src]="product.image" class="h-10 w-10 rounded-full object-cover" alt="product image">
-          </td>
+          </td> -->
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
             {{ product.name }}
           </td>

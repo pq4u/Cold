@@ -20,6 +20,8 @@ export class AuthService {
         if (response.token) {
           localStorage.setItem('token', response.token);
         }
+
+
         if (response.userId) {
           localStorage.setItem('userId', response.userId);
         }
@@ -40,6 +42,10 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getUserId(): string | null {
+    return localStorage.getItem('userId');
+  }
+
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
@@ -49,17 +55,27 @@ export class AuthService {
     if (!token) return null;
     try {
       const decoded: any = jwtDecode(token);
-      // Claims can vary. Common standard for role is:
-      // "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-      // or simple "role"
       return decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || decoded['role'] || null;
     } catch (e) {
       return null;
     }
   }
 
-  isAdmin(): boolean {
+  hasRole(allowedRoles: string[]): boolean {
     const role = this.getRole();
-    return role === 'Administrator' || role === 'Admin';
+    if (!role) return false;
+    return allowedRoles.includes(role);
+  }
+
+  isAdmin(): boolean {
+    return this.getRole() === 'Admin' || this.getRole() === 'Administrator';
+  }
+
+  isEmployee(): boolean {
+    return this.getRole() === 'Employee';
+  }
+
+  isSupplier(): boolean {
+    return this.getRole() === 'Supplier';
   }
 }

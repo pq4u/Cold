@@ -9,7 +9,7 @@ export const USERS_ROUTES: Routes = [
     path: 'list', 
     component: UserListComponent,
     canActivate: [RoleGuard],
-    data: { expectedRole: 'Administrator' }
+    data: { roles: ['Admin', 'Administrator'] }
   },
   { path: 'profile', component: UserProfileComponent }
 ];

@@ -12,7 +12,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'catalog', pathMatch: 'full' },
+      { path: '', redirectTo: 'users/profile', pathMatch: 'full' },
       {
         path: 'catalog',
         loadChildren: () => import('./modules/catalog/catalog.routes').then(m => m.CATALOG_ROUTES)

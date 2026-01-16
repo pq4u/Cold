@@ -1,16 +1,16 @@
 <div class="container mx-auto">
   <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Product Prices</h2>
+    <h2 class="text-2xl font-bold text-gray-800">Ceny produktów</h2>
     <div class="flex items-center space-x-4">
       <form [formGroup]="filterForm" class="flex items-center">
-        <label class="mr-2 text-gray-700">Filter Product:</label>
+        <label class="mr-2 text-gray-700">Filtruj produkt:</label>
         <select formControlName="productId" class="block w-64 bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm shadow-sm">
-          <option value="">All Products</option>
+          <option value="">Wszystkie produkty</option>
           <option *ngFor="let p of products" [value]="p.id">{{ p.name }}</option>
         </select>
       </form>
       <button (click)="openAddForm()" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
-        Add Price
+        Dodaj cenę
       </button>
     </div>
   </div>
@@ -19,11 +19,11 @@
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Class</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valid From</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valid To</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Produkt</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cena</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Klasa</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ważne od</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ważne do</th>
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
@@ -41,7 +41,7 @@
             {{ price.dateFrom | date:'medium' }}
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {{ (price.dateTo | date:'medium') || 'Indefinite' }}
+            {{ (price.dateTo | date:'medium') || 'Bezterminowo' }}
           </td>
         </tr>
       </tbody>
@@ -51,35 +51,35 @@
   <!-- Add Price Modal -->
   <div *ngIf="showForm" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
     <div class="bg-white p-8 rounded-lg shadow-xl w-96">
-      <h3 class="text-xl font-bold mb-4">Add New Price</h3>
+      <h3 class="text-xl font-bold mb-4">Dodaj nową cenę</h3>
       <form [formGroup]="addPriceForm" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Product</label>
+          <label class="block text-gray-700 text-sm font-bold mb-2">Produkt</label>
           <select formControlName="productId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <option value="" disabled>Select Product</option>
+            <option value="" disabled>Wybierz produkt</option>
             <option *ngFor="let p of products" [value]="p.id">{{ p.name }}</option>
           </select>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
+          <label class="block text-gray-700 text-sm font-bold mb-2">Cena</label>
           <input type="number" formControlName="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Class (Optional)</label>
+          <label class="block text-gray-700 text-sm font-bold mb-2">Klasa (opcjonalnie)</label>
           <input type="text" formControlName="classType" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Valid From</label>
+          <label class="block text-gray-700 text-sm font-bold mb-2">Ważne od</label>
           <input type="datetime-local" formControlName="dateFrom" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Valid To (Optional)</label>
+          <label class="block text-gray-700 text-sm font-bold mb-2">Ważne do (opcjonalnie)</label>
           <input type="datetime-local" formControlName="dateTo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
         <div class="flex justify-end space-x-2">
-          <button type="button" (click)="closeAddForm()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancel</button>
+          <button type="button" (click)="closeAddForm()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Anuluj</button>
           <button type="submit" [disabled]="addPriceForm.invalid" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 disabled:bg-indigo-300">
-            Save Price
+            Zapisz cenę
           </button>
         </div>
       </form>

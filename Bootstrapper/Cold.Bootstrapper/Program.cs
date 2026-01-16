@@ -34,18 +34,6 @@ builder.Services.AddCors(options =>
     
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-    string[] roles = { "Admin", "Employee", "Supplier" };
-    foreach (var role in roles)
-    {
-        if (!await roleManager.RoleExistsAsync(role))
-        {
-            await roleManager.CreateAsync(new IdentityRole<Guid>(role));
-        }
-    }
-}
 
 app.UseCors("AllowAll");
 
@@ -64,5 +52,18 @@ app.UsePackagesModule();
 
 app.MapControllers();
 app.MapGet("/ping", ctx => ctx.Response.WriteAsync("pong"));
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+    string[] roles = { "Admin", "Employee", "Supplier" };
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole<Guid>(role));
+        }
+    }
+}
 
 app.Run();

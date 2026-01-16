@@ -35,25 +35,26 @@ export class PackageRentalListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Determine role (mock logic or from token)
-    // In a real app, we'd decode the JWT token to get the role
-    // For now, let's assume if they have a supplierId or checking specific role logic
-    // We'll rely on what the API returns mainly, but UI actions depend on role.
-    this.currentUserId = this.authService.getToken() ? 'some-user-id' : null; // simplified
-    // TODO: Implement proper role checking from AuthService if needed for UI hiding
-    // For this demo, let's assume we can see everything but buttons might fail if unauthorized.
-    // Better: Check local storage role if stored, or decode token.
-    
-    // Quick hack for demo: Check if user registered as Supplier in previous steps?
-    // Let's just show all relevant UI sections.
-    this.isSupplier = true; // defaulting to true to show Request button for demo
-
+    this.currentUserId = this.authService.getUserId();
+    this.isSupplier = this.authService.isSupplier();
     this.loadData();
   }
 
   loadData(): void {
-    this.rentalsService.getRequested().subscribe(data => this.requestedRentals = data);
-    this.rentalsService.getActive().subscribe(data => this.activeRentals = data);
+    this.rentalsService.getRequested().subscribe(data => {
+        if (this.isSupplier && this.currentUserId) {
+            this.requestedRentals = data.filter(r => r.supplierId === this.currentUserId);
+        } else {
+            this.requestedRentals = data;
+        }
+    });
+    this.rentalsService.getActive().subscribe(data => {
+        if (this.isSupplier && this.currentUserId) {
+             this.activeRentals = data.filter(r => r.supplierId === this.currentUserId);
+        } else {
+             this.activeRentals = data;
+        }
+    });
     this.packagesService.getAll().subscribe(data => this.availablePackages = data);
   }
 
@@ -80,12 +81,9 @@ export class PackageRentalListComponent implements OnInit {
   }
 
   submitRequest(): void {
-    if (this.rentalForm.valid) {
-      // We need supplierId. In a real app, the backend might infer it from the user context.
-      // Or we pass it. The DTO requires supplierId.
-      // Let's use a dummy or the current user ID if it's a supplier.
+    if (this.rentalForm.valid && this.currentUserId) {
       const requestDto: CreatePackageRentalRequestDto = {
-        supplierId: '3fa85f64-5717-4562-b3fc-2c963f66afa6', // Hardcoded valid UUID for demo
+        supplierId: this.currentUserId,
         items: this.rentalForm.value.items
       };
 
@@ -98,20 +96,20 @@ export class PackageRentalListComponent implements OnInit {
 
   // Employee Actions
   approve(id: string): void {
-    if (confirm('Approve this rental request?')) {
+    if (confirm('Zatwierdzić to żądanie wypożyczenia?')) {
       this.rentalsService.approve(id).subscribe(() => this.loadData());
     }
   }
 
   reject(id: string): void {
-    if (confirm('Reject this rental request?')) {
+    if (confirm('Odrzucić to żądanie wypożyczenia?')) {
       this.rentalsService.reject(id).subscribe(() => this.loadData());
     }
   }
 
   // Employee (or Supplier?) Action - usually Employee registers return
   registerReturn(id: string): void {
-    if (confirm('Register return for this rental?')) {
+    if (confirm('Zarejestrować zwrot dla tego wypożyczenia?')) {
       this.rentalsService.return(id).subscribe(() => this.loadData());
     }
   }

@@ -1,38 +1,39 @@
 <div class="flex h-screen bg-gray-100">
-  <!-- Sidebar -->
+  <!-- nwigacja -->
   <aside class="w-64 bg-white shadow-md">
     <div class="p-6">
-      <h1 class="text-2xl font-bold text-gray-800">Cold App</h1>
+      <h1 class="text-2xl font-bold text-gray-800">Cold - zarządzanie chłodnią</h1>
     </div>
     <nav class="mt-6">
-      <a routerLink="/catalog/categories" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
-        <i class="mr-2">📁</i> Categories
-      </a>
-      <a routerLink="/catalog/products" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
-        <i class="mr-2">📁</i> Products
-      </a>
+      <ng-container *ngIf="showCatalog">
+        <a routerLink="/catalog/categories" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+          Kategorie
+        </a>
+        <a routerLink="/catalog/products" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+          Produkty
+        </a>
       <a routerLink="/catalog/prices" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
-        <i class="mr-2">📁</i> Prices
-      </a>
+           Ceny
+        </a>
+      </ng-container>
       <a routerLink="/deliveries" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
-        <i class="mr-2">🚚</i> Deliveries
+        Dostawy
       </a>
-      <a routerLink="/packages" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
-        <i class="mr-2">📦</i> Packages
-      </a>
+    <a *ngIf="showPackages" routerLink="/packages" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+        Opakowania
+    </a>
       <a routerLink="/packages/rentals" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
-        <i class="mr-2">📦</i> rentals
+        Wypożyczenia
       </a>
-      <a routerLink="/users" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
-        <i class="mr-2">👥</i> Users
+      <a *ngIf="showUsers" routerLink="/users" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+        Użytkownicy
       </a>
       <button (click)="logout()" class="w-full text-left px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
-        <i class="mr-2">🚪</i> Logout
+        Wyloguj
       </button>
     </nav>
   </aside>
-
-  <!-- Main Content -->
+<!-- content -->
   <main class="flex-1 overflow-y-auto p-8">
     <router-outlet></router-outlet>
   </main>
