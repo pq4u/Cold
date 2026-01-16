@@ -6,7 +6,6 @@ import { AuthService } from '../../../core/auth/auth.service';
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.html',
-  styleUrls: ['./main-layout.scss'],
   imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive]
 })
 export class MainLayoutComponent {

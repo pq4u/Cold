@@ -7,8 +7,7 @@ import { UsersService, UserDto } from '../../../core/services/users.service';
   selector: 'app-user-list',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './user-list.html',
-  styleUrls: ['./user-list.scss']
+  templateUrl: './user-list.html'
 })
 export class UserListComponent implements OnInit {
   users: UserDto[] = [];

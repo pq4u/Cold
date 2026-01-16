@@ -10,8 +10,7 @@ import { ProductDto, CategoryDto, ProductPriceDto } from '../../../core/models/a
   selector: 'app-product-list',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './product-list.html',
-  styleUrls: ['./product-list.scss']
+  templateUrl: './product-list.html'
 })
 export class ProductListComponent implements OnInit {
   products: ProductDto[] = [];

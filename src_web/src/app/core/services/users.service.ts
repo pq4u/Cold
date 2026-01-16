@@ -12,9 +12,10 @@ export interface UserDto {
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class UsersService {
   private apiUrl = `${environment.apiUrl}/users`;
-
   constructor(private http: HttpClient) { }
 
   getSuppliers(): Observable<UserDto[]> {

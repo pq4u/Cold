@@ -1,40 +1,44 @@
 <div class="flex h-screen bg-gray-100">
-  <!-- nwigacja -->
-  <aside class="w-64 bg-white shadow-md">
-    <div class="p-6">
-      <h1 class="text-2xl font-bold text-gray-800">Cold - zarządzanie chłodnią</h1>
+  <aside class="w-64 bg-white border-r border-gray-200">
+    <div class="p-4 border-b border-gray-200">
+      <h1 class="text-xl font-bold text-gray-800">Cold - zarządzanie chłodnią</h1>
     </div>
-    <nav class="mt-6">
+    <nav class="mt-4">
       <ng-container *ngIf="showCatalog">
-        <a routerLink="/catalog/categories" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+        <a routerLink="/catalog/categories" routerLinkActive="bg-blue-50 text-blue-600" class="block px-6 py-3 text-gray-600 hover:bg-gray-50">
           Kategorie
         </a>
-        <a routerLink="/catalog/products" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+        <a routerLink="/catalog/products" routerLinkActive="bg-blue-50 text-blue-600" class="block px-6 py-3 text-gray-600 hover:bg-gray-50">
           Produkty
         </a>
-      <a routerLink="/catalog/prices" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+      <a routerLink="/catalog/prices" routerLinkActive="bg-blue-50 text-blue-600" class="block px-6 py-3 text-gray-600 hover:bg-gray-50">
            Ceny
         </a>
       </ng-container>
-      <a routerLink="/deliveries" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+      <a routerLink="/deliveries" routerLinkActive="bg-blue-50 text-blue-600" class="block px-6 py-3 text-gray-600 hover:bg-gray-50">
         Dostawy
       </a>
-    <a *ngIf="showPackages" routerLink="/packages" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+    <a *ngIf="showPackages" routerLink="/packages" routerLinkActive="bg-blue-50 text-blue-600" class="block px-6 py-3 text-gray-600 hover:bg-gray-50">
         Opakowania
     </a>
-      <a routerLink="/packages/rentals" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+      <a routerLink="/packages/rentals" routerLinkActive="bg-blue-50 text-blue-600" class="block px-6 py-3 text-gray-600 hover:bg-gray-50">
         Wypożyczenia
       </a>
-      <a *ngIf="showUsers" routerLink="/users" routerLinkActive="bg-gray-200 text-gray-900" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+      <a *ngIf="showUsers" routerLink="/users" routerLinkActive="bg-blue-50 text-blue-600" class="block px-6 py-3 text-gray-600 hover:bg-gray-50">
         Użytkownicy
       </a>
-      <button (click)="logout()" class="w-full text-left px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+      <button (click)="logout()" class="w-full text-left px-6 py-3 text-gray-600 hover:bg-gray-50">
         Wyloguj
       </button>
     </nav>
   </aside>
-<!-- content -->
-  <main class="flex-1 overflow-y-auto p-8">
-    <router-outlet></router-outlet>
+
+  <main class="flex-1 overflow-y-auto flex flex-col">
+    <div class="flex-1 p-8">
+      <router-outlet></router-outlet>
+    </div>
+    <footer class="p-4 bg-white border-t border-gray-200 text-center text-sm text-gray-500">
+        2026 Cold - Paweł Tęsny 5ION2 WSTI
+    </footer>
   </main>
 </div>

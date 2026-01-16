@@ -12,8 +12,7 @@ import { ProductDto, CreateDeliveryDto, ProductPriceDto } from '../../../core/mo
   selector: 'app-create-delivery',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './create-delivery.html',
-  styleUrls: ['./create-delivery.scss']
+  templateUrl: './create-delivery.html'
 })
 export class CreateDeliveryComponent implements OnInit {
   deliveryForm: FormGroup;

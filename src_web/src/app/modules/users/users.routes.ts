@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { UserListComponent } from './user-list/user-list';
-import { UserProfileComponent } from './user-profile/user-profile';
 import { RoleGuard } from '../../core/auth/role.guard';
 
 export const USERS_ROUTES: Routes = [
@@ -10,6 +9,5 @@ export const USERS_ROUTES: Routes = [
     component: UserListComponent,
     canActivate: [RoleGuard],
     data: { roles: ['Admin', 'Administrator'] }
-  },
-  { path: 'profile', component: UserProfileComponent }
+  }
 ];

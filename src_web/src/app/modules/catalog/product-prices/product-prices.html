@@ -1,84 +1,73 @@
-<div class="container mx-auto">
+<div class="p-6">
   <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Ceny produktów</h2>
+    <h2 class="text-xl font-bold text-gray-800">Ceny produktów</h2>
     <div class="flex items-center space-x-4">
       <form [formGroup]="filterForm" class="flex items-center">
-        <label class="mr-2 text-gray-700">Filtruj produkt:</label>
-        <select formControlName="productId" class="block w-64 bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm shadow-sm">
+        <label class="mr-2 text-sm text-gray-600">Produkt:</label>
+        <select formControlName="productId" class="w-64 border border-gray-300 rounded p-1 text-sm focus:outline-none focus:border-blue-500">
           <option value="">Wszystkie produkty</option>
           <option *ngFor="let p of products" [value]="p.id">{{ p.name }}</option>
         </select>
       </form>
-      <button (click)="openAddForm()" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+      <button (click)="openAddForm()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
         Dodaj cenę
       </button>
     </div>
   </div>
 
-  <div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
+  <div class="bg-white rounded shadow-sm border border-gray-200 overflow-hidden">
+    <table class="w-full text-left">
+      <thead class="bg-gray-50 border-b border-gray-200">
         <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Produkt</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cena</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Klasa</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ważne od</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ważne do</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500">Produkt</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500">Cena</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500">Klasa</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500">Ważne od</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500">Ważne do</th>
         </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <tr *ngFor="let price of prices">
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {{ getProductName(price.productId) }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">
-            {{ price.price | number:'1.2-2' }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {{ price.classType || '-' }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {{ price.dateFrom | date:'medium' }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {{ (price.dateTo | date:'medium') || 'Bezterminowo' }}
-          </td>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let price of prices" class="hover:bg-gray-50">
+          <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ getProductName(price.productId) }}</td>
+          <td class="px-6 py-4 text-sm text-gray-900 font-semibold">{{ price.price | number:'1.2-2' }}</td>
+          <td class="px-6 py-4 text-sm text-gray-500">{{ price.classType || '-' }}</td>
+          <td class="px-6 py-4 text-sm text-gray-500">{{ price.dateFrom | date:'medium' }}</td>
+          <td class="px-6 py-4 text-sm text-gray-500">{{ (price.dateTo | date:'medium') || 'Bezterminowo' }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Add Price Modal -->
-  <div *ngIf="showForm" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-    <div class="bg-white p-8 rounded-lg shadow-xl w-96">
-      <h3 class="text-xl font-bold mb-4">Dodaj nową cenę</h3>
+  <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded shadow-lg w-96">
+      <h3 class="text-lg font-bold mb-4">Dodaj nową cenę</h3>
       <form [formGroup]="addPriceForm" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Produkt</label>
-          <select formControlName="productId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Produkt</label>
+          <select formControlName="productId" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
             <option value="" disabled>Wybierz produkt</option>
             <option *ngFor="let p of products" [value]="p.id">{{ p.name }}</option>
           </select>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Cena</label>
-          <input type="number" formControlName="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Cena</label>
+          <input type="number" formControlName="price" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Klasa (opcjonalnie)</label>
-          <input type="text" formControlName="classType" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Klasa (opcjonalnie)</label>
+          <input type="text" formControlName="classType" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Ważne od</label>
-          <input type="datetime-local" formControlName="dateFrom" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Ważne od</label>
+          <input type="datetime-local" formControlName="dateFrom" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Ważne do (opcjonalnie)</label>
-          <input type="datetime-local" formControlName="dateTo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Ważne do (opcjonalnie)</label>
+          <input type="datetime-local" formControlName="dateTo" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
         </div>
         <div class="flex justify-end space-x-2">
-          <button type="button" (click)="closeAddForm()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Anuluj</button>
-          <button type="submit" [disabled]="addPriceForm.invalid" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 disabled:bg-indigo-300">
+          <button type="button" (click)="closeAddForm()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Anuluj</button>
+          <button type="submit" [disabled]="addPriceForm.invalid" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:bg-blue-300">
             Zapisz cenę
           </button>
         </div>

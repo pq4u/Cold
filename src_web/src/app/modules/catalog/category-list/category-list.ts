@@ -8,8 +8,7 @@ import { CategoryDto } from '../../../core/models/api-models';
   selector: 'app-category-list',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './category-list.html',
-  styleUrls: ['./category-list.scss']
+  templateUrl: './category-list.html'
 })
 export class CategoryListComponent implements OnInit {
   categories: CategoryDto[] = [];

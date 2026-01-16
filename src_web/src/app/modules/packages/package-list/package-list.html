@@ -1,61 +1,54 @@
-<div class="container mx-auto">
+<div class="p-6">
   <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Opakowania</h2>
-    <button (click)="onAdd()" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+    <h2 class="text-xl font-bold text-gray-800">Opakowania</h2>
+    <button (click)="onAdd()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
       Dodaj opakowanie
     </button>
   </div>
 
-  <div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
+  <div class="bg-white rounded shadow-sm border border-gray-200 overflow-hidden">
+    <table class="w-full text-left">
+      <thead class="bg-gray-50 border-b border-gray-200">
         <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nazwa</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Opis</th>
-          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ilość</th>
-          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Akcje</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500">Nazwa</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500">Opis</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500 text-right">Ilość</th>
+          <th class="px-6 py-3 text-sm font-medium text-gray-500 text-right">Akcje</th>
         </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <tr *ngFor="let pkg of packages">
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {{ pkg.name }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {{ pkg.description || '-' }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900 font-semibold">
-            {{ pkg.quantity }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-            <button (click)="onEdit(pkg)" class="text-indigo-600 hover:text-indigo-900 mr-4">Edytuj</button>
-            <button (click)="onDelete(pkg.id!)" class="text-red-600 hover:text-red-900">Usuń</button>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let pkg of packages" class="hover:bg-gray-50">
+          <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ pkg.name }}</td>
+          <td class="px-6 py-4 text-sm text-gray-500">{{ pkg.description || '-' }}</td>
+          <td class="px-6 py-4 text-sm text-gray-900 text-right font-semibold">{{ pkg.quantity }}</td>
+          <td class="px-6 py-4 text-sm text-right">
+            <button (click)="onEdit(pkg)" class="text-blue-600 hover:underline mr-4">Edytuj</button>
+            <button (click)="onDelete(pkg.id!)" class="text-red-600 hover:underline">Usuń</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Modal Form -->
-  <div *ngIf="showForm" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-    <div class="bg-white p-8 rounded-lg shadow-xl w-96">
-      <h3 class="text-xl font-bold mb-4">{{ isEditing ? 'Edytuj' : 'Dodaj' }} opakowanie</h3>
+  <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded shadow-lg w-96">
+      <h3 class="text-lg font-bold mb-4">{{ isEditing ? 'Edytuj' : 'Dodaj' }} opakowanie</h3>
       <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Nazwa</label>
-          <input type="text" formControlName="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Nazwa</label>
+          <input type="text" formControlName="name" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Opis</label>
-          <textarea formControlName="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Opis</label>
+          <textarea formControlName="description" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500"></textarea>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Ilość</label>
-          <input type="number" formControlName="quantity" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Ilość</label>
+          <input type="number" formControlName="quantity" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
         </div>
         <div class="flex justify-end space-x-2">
-          <button type="button" (click)="cancel()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Anuluj</button>
-          <button type="submit" [disabled]="packageForm.invalid" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 disabled:bg-indigo-300">
+          <button type="button" (click)="cancel()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Anuluj</button>
+          <button type="submit" [disabled]="packageForm.invalid" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:bg-blue-300">
             {{ isEditing ? 'Aktualizuj' : 'Zapisz' }}
           </button>
         </div>

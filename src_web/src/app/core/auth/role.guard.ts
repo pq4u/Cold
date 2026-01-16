@@ -6,11 +6,13 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class RoleGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) 
+  {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree {
     const expectedRoles = route.data['roles'] as string[];
-    const currentRole = this.authService.getRole();
+    const currentRole = this.authService
+                                      .getRole();
 
     if (this.authService.isAuthenticated() && currentRole) {
       if (expectedRoles && expectedRoles.length > 0) {
@@ -18,8 +20,7 @@ export class RoleGuard implements CanActivate {
            return true;
         }
       } else {
-        // If no roles specified, assume authenticated is enough (or deny? usually deny if using RoleGuard)
-        // But for this app, RoleGuard implies role check.
+        // co jesli brak roli?
         return true;
       }
     }

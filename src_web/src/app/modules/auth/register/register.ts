@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-register',
   templateUrl: './register.html',
-  styleUrls: ['./register.scss'],
   imports: [ReactiveFormsModule, CommonModule, RouterLink]
 })
 export class RegisterComponent {

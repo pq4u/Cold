@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
-  styleUrls: ['./login.scss'],
   imports: [ReactiveFormsModule, CommonModule, RouterLink]
 })
 export class LoginComponent {

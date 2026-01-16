@@ -9,8 +9,7 @@ import { ProductPriceDto, ProductDto } from '../../../core/models/api-models';
   selector: 'app-product-prices',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './product-prices.html',
-  styleUrls: ['./product-prices.scss']
+  templateUrl: './product-prices.html'
 })
 export class ProductPricesComponent implements OnInit {
   prices: ProductPriceDto[] = [];

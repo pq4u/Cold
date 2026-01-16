@@ -1,42 +1,36 @@
-<div class="container mx-auto">
+<div class="p-6">
   <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Wypożyczenia opakowań</h2>
-    <!-- Supplier Action -->
-    <button *ngIf="isSupplier" (click)="openRequestForm()" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+    <h2 class="text-xl font-bold text-gray-800">Wypożyczenia opakowań</h2>
+    <button *ngIf="isSupplier" (click)="openRequestForm()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
       Zażądaj wypożyczenia
     </button>
   </div>
 
-  <!-- Requested Rentals (Employee Action Needed) -->
   <div class="mb-8">
-    <h3 class="text-xl font-bold text-gray-700 mb-3">Oczekujące żądania</h3>
-    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
+    <h3 class="text-lg font-semibold text-gray-700 mb-3">Oczekujące żądania</h3>
+    <div class="bg-white rounded shadow-sm border border-gray-200 overflow-hidden">
+      <table class="w-full text-left">
+        <thead class="bg-gray-50 border-b border-gray-200">
           <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dostawca</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Elementy</th>
-            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Akcje</th>
+            <th class="px-6 py-3 text-sm font-medium text-gray-500">Data</th>
+            <th class="px-6 py-3 text-sm font-medium text-gray-500">Dostawca</th>
+            <th class="px-6 py-3 text-sm font-medium text-gray-500">Elementy</th>
+            <th class="px-6 py-3 text-sm font-medium text-gray-500 text-right">Akcje</th>
           </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-          <tr *ngFor="let rental of requestedRentals">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {{ rental.requestDate | date:'short' }}
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {{ rental.supplierId }}
-            </td>
+        <tbody class="divide-y divide-gray-200">
+          <tr *ngFor="let rental of requestedRentals" class="hover:bg-gray-50">
+            <td class="px-6 py-4 text-sm text-gray-500">{{ rental.requestDate | date:'short' }}</td>
+            <td class="px-6 py-4 text-sm text-gray-500">{{ rental.supplierId }}</td>
             <td class="px-6 py-4 text-sm text-gray-500">
               <div *ngFor="let item of rental.items">
                 {{ getPackageName(item.packageId) }}: {{ item.quantity }}
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <td class="px-6 py-4 text-sm text-right">
               <ng-container *ngIf="!isSupplier">
-                <button (click)="approve(rental.id!)" class="text-green-600 hover:text-green-900 mr-4">Zatwierdź</button>
-                <button (click)="reject(rental.id!)" class="text-red-600 hover:text-red-900">Odrzuć</button>
+                <button (click)="approve(rental.id!)" class="text-green-600 hover:underline mr-4">Zatwierdź</button>
+                <button (click)="reject(rental.id!)" class="text-red-600 hover:underline">Odrzuć</button>
               </ng-container>
             </td>
           </tr>
@@ -48,34 +42,29 @@
     </div>
   </div>
 
-  <!-- Active Rentals -->
   <div>
-    <h3 class="text-xl font-bold text-gray-700 mb-3">Aktywne wypożyczenia</h3>
-    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
+    <h3 class="text-lg font-semibold text-gray-700 mb-3">Aktywne wypożyczenia</h3>
+    <div class="bg-white rounded shadow-sm border border-gray-200 overflow-hidden">
+      <table class="w-full text-left">
+        <thead class="bg-gray-50 border-b border-gray-200">
           <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data zatwierdzenia</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dostawca</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Elementy</th>
-            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Akcje</th>
+            <th class="px-6 py-3 text-sm font-medium text-gray-500">Data zatwierdzenia</th>
+            <th class="px-6 py-3 text-sm font-medium text-gray-500">Dostawca</th>
+            <th class="px-6 py-3 text-sm font-medium text-gray-500">Elementy</th>
+            <th class="px-6 py-3 text-sm font-medium text-gray-500 text-right">Akcje</th>
           </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-          <tr *ngFor="let rental of activeRentals">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {{ rental.approvalDate | date:'short' }}
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {{ rental.supplierId }}
-            </td>
+        <tbody class="divide-y divide-gray-200">
+          <tr *ngFor="let rental of activeRentals" class="hover:bg-gray-50">
+            <td class="px-6 py-4 text-sm text-gray-500">{{ rental.approvalDate | date:'short' }}</td>
+            <td class="px-6 py-4 text-sm text-gray-500">{{ rental.supplierId }}</td>
             <td class="px-6 py-4 text-sm text-gray-500">
               <div *ngFor="let item of rental.items">
                  {{ getPackageName(item.packageId) }}: {{ item.quantity }}
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button *ngIf="!isSupplier" (click)="registerReturn(rental.id!)" class="text-indigo-600 hover:text-indigo-900">Zwróć</button>
+            <td class="px-6 py-4 text-sm text-right">
+              <button *ngIf="!isSupplier" (click)="registerReturn(rental.id!)" class="text-blue-600 hover:underline">Zwróć</button>
             </td>
           </tr>
            <tr *ngIf="activeRentals.length === 0">
@@ -86,39 +75,38 @@
     </div>
   </div>
 
-  <!-- Request Modal -->
-  <div *ngIf="showRequestForm" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-    <div class="bg-white p-8 rounded-lg shadow-xl w-1/2">
-      <h3 class="text-xl font-bold mb-4">Zażądaj wypożyczenia opakowania</h3>
+  <div *ngIf="showRequestForm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded shadow-lg w-1/2">
+      <h3 class="text-lg font-bold mb-4">Zażądaj wypożyczenia</h3>
       <form [formGroup]="rentalForm" (ngSubmit)="submitRequest()">
         <div class="mb-4">
           <div class="flex justify-between items-center mb-2">
-            <label class="block text-gray-700 text-sm font-bold">Elementy</label>
+            <label class="block text-sm font-medium text-gray-700">Elementy</label>
             <button type="button" (click)="addItem()" class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded hover:bg-green-200">+ Dodaj element</button>
           </div>
           
-          <div formArrayName="items" class="space-y-3 max-h-64 overflow-y-auto p-2">
-            <div *ngFor="let item of items.controls; let i=index" [formGroupName]="i" class="flex gap-4 items-end bg-gray-50 p-2 rounded">
+          <div formArrayName="items" class="space-y-2 max-h-64 overflow-y-auto p-1">
+            <div *ngFor="let item of items.controls; let i=index" [formGroupName]="i" class="flex gap-4 items-end bg-gray-50 p-2 rounded border border-gray-200">
               <div class="flex-1">
-                <label class="block text-xs text-gray-500">Opakowanie</label>
-                <select formControlName="packageId" class="block w-full border border-gray-300 rounded p-1 text-sm">
+                <label class="block text-xs text-gray-500 mb-1">Opakowanie</label>
+                <select formControlName="packageId" class="w-full border border-gray-300 p-1 rounded text-sm">
                   <option value="" disabled>Wybierz opakowanie</option>
                   <option *ngFor="let p of availablePackages" [value]="p.id">{{ p.name }} (Dostępne: {{ p.quantity }})</option>
                 </select>
               </div>
               <div class="w-24">
-                <label class="block text-xs text-gray-500">Ilość</label>
-                <input type="number" formControlName="quantity" class="block w-full border border-gray-300 rounded p-1 text-sm">
+                <label class="block text-xs text-gray-500 mb-1">Ilość</label>
+                <input type="number" formControlName="quantity" class="w-full border border-gray-300 p-1 rounded text-sm">
               </div>
-              <button type="button" (click)="removeItem(i)" class="text-red-500 hover:text-red-700 font-bold">&times;</button>
+              <button type="button" (click)="removeItem(i)" class="text-red-500 hover:text-red-700 font-bold px-2">&times;</button>
             </div>
           </div>
         </div>
 
         <div class="flex justify-end space-x-2 mt-6">
-          <button type="button" (click)="showRequestForm = false" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Anuluj</button>
-          <button type="submit" [disabled]="rentalForm.invalid || items.length === 0" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 disabled:bg-indigo-300">
-            Wyślij żądanie
+          <button type="button" (click)="showRequestForm = false" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Anuluj</button>
+          <button type="submit" [disabled]="rentalForm.invalid || items.length === 0" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:bg-blue-300">
+            Wyślij
           </button>
         </div>
       </form>

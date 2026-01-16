@@ -11,8 +11,7 @@ import { AuthService } from '../../../core/auth/auth.service';
   selector: 'app-delivery-list',
   standalone: true,
   imports: [CommonModule, RouterLink, ReactiveFormsModule],
-  templateUrl: './delivery-list.html',
-  styleUrls: ['./delivery-list.scss']
+  templateUrl: './delivery-list.html'
 })
 export class DeliveryListComponent implements OnInit {
   deliveries: DeliveryDto[] = [];
@@ -25,7 +24,7 @@ export class DeliveryListComponent implements OnInit {
     private router: Router
   ) {
     this.filterForm = this.fb.group({
-      status: ['all'] // 'all', 'uninvoiced'
+      status: ['all']
     });
   }
 
@@ -42,25 +41,25 @@ export class DeliveryListComponent implements OnInit {
     const userId = this.authService.getUserId();
 
     if (isSupplier && userId) {
-        if (status === 'uninvoiced') {
-            this.deliveriesService.getUninvoicedBySupplier(userId).subscribe(data => this.deliveries = data);
-        } else {
+        // if (status === 'uninvoiced') {
+        //     this.deliveriesService.getUninvoicedBySupplier(userId).subscribe(data => this.deliveries = data);
+        // } else {
             this.deliveriesService.getBySupplier(userId).subscribe(data => this.deliveries = data);
-        }
+        // }
     } else {
-        if (status === 'uninvoiced') {
-            this.deliveriesService.getUninvoiced().subscribe(data => this.deliveries = data);
-        } else {
+        // if (status === 'uninvoiced') {
+        //     this.deliveriesService.getUninvoiced().subscribe(data => this.deliveries = data);
+        // } else {
             this.deliveriesService.getAll().subscribe(data => this.deliveries = data);
-        }
+        // }
     }
   }
 
-  markAsInvoiced(id: string): void {
-    if (confirm('Czy na pewno chcesz oznaczyć tę dostawę jako zafakturowaną?')) {
-      this.deliveriesService.markInvoiced(id).subscribe(() => {
-        this.loadDeliveries();
-      });
-    }
-  }
+  // markAsInvoiced(id: string): void {
+  //   if (confirm('Czy na pewno oznaczyc jako zafakturowaną?')) {
+  //     this.deliveriesService.markInvoiced(id).subscribe(() => {
+  //       this.loadDeliveries();
+  //     });
+  //   }
+  // }
 }

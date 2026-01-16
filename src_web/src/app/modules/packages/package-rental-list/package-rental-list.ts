@@ -10,8 +10,7 @@ import { PackageRentalDto, PackageDto, CreatePackageRentalRequestDto } from '../
   selector: 'app-package-rental-list',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './package-rental-list.html',
-  styleUrls: ['./package-rental-list.scss']
+  templateUrl: './package-rental-list.html'
 })
 export class PackageRentalListComponent implements OnInit {
   requestedRentals: PackageRentalDto[] = [];

@@ -8,8 +8,7 @@ import { PackageDto } from '../../../core/models/api-models';
   selector: 'app-package-list',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './package-list.html',
-  styleUrls: ['./package-list.scss']
+  templateUrl: './package-list.html'
 })
 export class PackageListComponent implements OnInit {
   packages: PackageDto[] = [];

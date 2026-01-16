@@ -4,10 +4,10 @@ import { catchError, throwError } from 'rxjs';
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      let errorMessage = "wystapil błąd";
+      let errorMessage = "Wystapil błąd";
       
       if (error.error instanceof ErrorEvent) {
-        errorMessage = `błąd: ${error.error.message}`;
+        errorMessage = `Błąd: ${error.error.message}`;
       }
       else {
         // po stronie serwera
@@ -16,11 +16,11 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         } else if (error.error && error.error.title) {
             errorMessage = error.error.title;
         } else {
-            errorMessage = `status błędu: ${error.status}\nwiadomość błędu: ${error.message}`;
+            errorMessage = `Status błędu: ${error.status}\n wiadomość błędu: ${error.message}`;
         }
       }
       
-      console.error('błąd żądania http:', errorMessage);
+      console.error('Błąd żądania http:', errorMessage);
       console.log('todo: toastr');
       
       return throwError(() => error);
